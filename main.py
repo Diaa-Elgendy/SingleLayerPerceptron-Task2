@@ -79,12 +79,15 @@ def getDataFromGUI():
     etaValue = float(learningRateTextField.get())
     thresholdValue = float(thresholdTextField.get())
     epochValue = int(epochTextField.get())
-    weightMatrix = np.random.rand(3, 1)
-
+    weightMatrix = np.random.rand(2, 1)
+    biasValue = np.zeros((1, 1))
     if biasCheckBox.get() == 0:
+        biasValue = np.zeros((1, 1))
         bias = 0
     else:
+        biasValue = np.ones((1, 1))
         bias = 1
+    weightMatrix = np.concatenate([biasValue, weightMatrix])
 
     class1train, class1test, class2train, class2test = dataSplitter(class1, class2, feature1, feature2,
                                                                     originalDataframe)
@@ -121,6 +124,7 @@ def train(trainSet, weightMatrix, feature1, feature2, bias, etaValue, thresholdV
         for i in trainSet.index:
             selectedRow = [[bias, trainSet[feature1][i], trainSet[feature2][i]]]
             actualClass = trainSet['species'][i]  # class 1 or class -1
+
             yi = np.dot(selectedRow, weightMatrix.T)  # predicted class
             loss = actualClass - yi
             weightMatrix = (etaValue * loss) * selectedRow + weightMatrix
@@ -134,6 +138,7 @@ def train(trainSet, weightMatrix, feature1, feature2, bias, etaValue, thresholdV
             error += loss * loss
 
         mse = error / len(trainSet.index)
+        # print(mse)
         # print('============================')
         # print('MSE: ', mse)
         # print('Thr: ', thresholdValue)
