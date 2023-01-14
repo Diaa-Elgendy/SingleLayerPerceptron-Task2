@@ -1,8 +1,7 @@
 # Single Layer Perceptron - Task2
-Single layer perceptron using Adaline algorithm (MSE) on penguins' data
+Single layer perceptron using Adaptive Linear Neuron algorithm (Adaline) on penguins' data
 
 ## Task Overview
-- Stands for “Adaptive Linear Neuron”.
 - The Adaline deviates from Perceptron because there is no cost function in Perceptron and without a cost function Perceptron is minimizing nothing. 
 - The cost function in the Adaline Algorithm is mean square error.
 - To minimize cost function, gradient descent is needed.
@@ -16,3 +15,5 @@ Single layer perceptron using Adaline algorithm (MSE) on penguins' data
 ## Output
 
 ![image](https://user-images.githubusercontent.com/88054373/206041817-af53c507-8853-4506-be4d-2d33666a3337.png)
+
+
